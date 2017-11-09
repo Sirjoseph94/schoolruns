@@ -29,7 +29,7 @@ exports.show_one_student_record = function(req, res) {
     Students.findById(req.params.studentId, function(err, student){
         if (err)
         res.send(err);
-        res.json(Student);
+        res.json(student);
     });
 };
 
