@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 const db = require('./config/db');
 const Students = require('./api/models/studentModel');//custom model
 const bodyParser = require('body-parser');
-const path = require('path');
-const ejs = require('ejs');
+const cors = require('cors');
+
 
 
 //initiating express
 let app = express();
 let port = 1000;
-
+app.use(cors());
 //connecting to mongoose database
  mongoose.Promise = global.Promise;
  //mongoose.connect('mongodb://localhost/schoolrunsdb', {
@@ -24,11 +24,7 @@ var dbase = mongoose.connection;
 dbase.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-//EJS templating engine
-app.set('view engine', 'ejs');
 
-//static files
-app.use(express.static(path.join(__dirname, 'public')));
 //using body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

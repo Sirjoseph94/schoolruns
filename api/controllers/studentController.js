@@ -1,5 +1,6 @@
 'use strict';
 
+const cors = require('cors');
 const mongoose = require('mongoose'),
 Students = mongoose.model('Students');
 
@@ -45,7 +46,6 @@ exports.update_one_student_record = function(req, res){
 
 //delete a student record
 exports.delete_student_record = function(req, res){
-
     Students.remove({
         _id: req.params.studentId},
         function(err, student){
