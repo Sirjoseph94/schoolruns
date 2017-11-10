@@ -34,10 +34,10 @@ exports.show_one_student_record = function(req, res) {
     });
 };
 
-//upadte student record
+//update student record
 exports.update_one_student_record = function(req, res){
 
-    Student.findOneAndUpdate({_id: req.params.studentId}, req.body, {new: true}, function(err, student){
+    Students.findOneAndUpdate({_id: req.params.studentId}, req.body, {new: true}, function(err, student){
         if (err)
         res.send(err);
         res.json(student);

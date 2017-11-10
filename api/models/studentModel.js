@@ -9,7 +9,7 @@ const StudentSchema = new Schema({
     level: Number,
     age:Number,
     grade: Number,
-    photo: String,
+   // photo: String,
     Created_date: {
         type: Date,
         default: Date.now

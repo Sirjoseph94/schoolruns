@@ -1,31 +1,60 @@
 <template>
 <!--begin header -->
-  <div class="scholars fluid-container">
+  <div class="add fluid-container">
     <div class="jumbotron text-center">
-    <h1 class="mt-3 ">Hello am working</h1>
-    <p class="title">This is the profiles of some outstanding students </p>
+    <h1 class="mt-3 ">Add Student</h1>
+    <p class="lead">Fill the form to add new student </p>
     </div><!--end header-->
 
 <!--begin main body -->
     <div class="container">
       <div class="row">
       <!--card -->           
-      <div class="col-md-4 mt-5"  v-for="student in students">               
-        <div class="card" style="width: 20rem;">
-        <div class="card-body" >
-          <h4 class="card-title text-center"> {{student.name}} <span class="badge badge-secondary">{{ student.grade}}</span></h4>
-          <p class="card-text"></p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">MAT. No.: {{student.matriculation_number}}</li>
-          <li class="list-group-item">Age.: {{student.age}}</li>
-          <li class="list-group-item">Department.: {{student.department}}</li>
-          <li class="list-group-item">Level: {{student.level}}</li>
-        
-        </ul>
-          <a href="#" class="btn btn-primary">Update</a>
-          <a href="#" class="btn btn-danger">Delete</a>
-        </div>
-              <div class="h-100"></div>
+      <div style="width:80%" class="mx-auto">
+          <form v-on:submit="addStudent">
+              <div class="form-group">
+                <label class="col-form-label" for="name"></label>
+                <input type="text" class="form-control" id="name" v-model="students.name"  placeholder="Enter full name">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="mat_no"></label>
+                <input type="text" class="form-control" id="mat_no" placeholder="Enter Mat. no." v-model="students.matriculation_number">
+              </div>
+       
+              <div class="form-group">
+                <label class="col-form-label" for="department"></label>
+                <input type="text" class="form-control" id="department" placeholder="Enter Department" v-model="students.department">
+              </div>
+
+     
+
+              <div class="form-group">
+                <label class="col-form-label" for="level"></label>
+                <select class="form-control" id="level" v-model="students.level">
+                  <option selected>Select level</option>
+                  <option value="100">100L</option>
+                  <option value="200">200L</option>
+                  <option value="300">300L</option>
+                  <option value="400">400L</option>
+                  <option value="500">500L</option>
+                  <option value="600">600L</option>
+                  <option value="700">700L</option>
+                </select>
+              </div>
+
+              <div class="row mx-auto">
+                 <label class="col-form-label" for="age"></label>
+                <input type="number" class="form-control col-md-5" id="age" placeholder="Enter Age" v-model="age">
+              
+                 <label class="col-form-label" for="grade">Grade</label>
+                <input type="number" class="form-control col-md-5" id="grade" placeholder="Enter Grade" v-model="grade">
+              
+              </div>
+           <div class="text-center">
+        <button class="btn btn-indigo">Add <i class="fa fa-plus ml-1"></i></button>
+    </div>
+
+          </form>
       </div>
       <!--/card -->
 
@@ -41,25 +70,42 @@
 <script>
 
 export default {
-  name: 'students',
+  name: 'add',
   data () {
     return {
-     students: []
+     students: {}
     }
   },
   methods:{
-    fetchStudents(){
-      this.$http.get('http://localhost:1000/students')
+    addStudent(e){
+    if(!this.students.name || this.students.department || this.students.matriculation_number || this.students.level || this.students.age || this.students.grade){
+      console.log('Please fill the required fields')
+    } else {
+      let newStudent = {
+        name: this.students.name,
+        department: this.students.department,
+        mat_number: this.students.matriculation_number,
+        level: this.students.level,
+        age: this.students.age,
+        grade: this.students.grade
+
+      }
+
+      .this.$http.post('http://localhost:1000/students', newStudent)
         .then(function(response){
-          
-           this.students = response.body;
-   
-        });
+          this.$router.push({path: '/' })
+        })
+       e.preventDefault();
+    }
+      e.preventDefault();
     }
   },
   created: function(){
     this.fetchStudents();
   }
+ // updated: function(){
+   // this.fetchStudents();
+ // }
 }
 </script>
 
