@@ -1,6 +1,6 @@
 'use strict';
 
-const cors = require('cors');
+//const cors = require('cors');
 const mongoose = require('mongoose'),
 Students = mongoose.model('Students');
 

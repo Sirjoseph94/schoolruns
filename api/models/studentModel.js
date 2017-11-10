@@ -6,15 +6,10 @@ const StudentSchema = new Schema({
     name: String,
     matriculation_number: String,
     department: String,
-    // level: Number,
-    // age:Number,
-    // gender: {
-    //     type: [{
-    //         type: String,
-    //         enum: ['Male', 'Female']
-    //       }]
-    // },
-    // photo: String,
+    level: Number,
+    age:Number,
+    grade: Number,
+    photo: String,
     Created_date: {
         type: Date,
         default: Date.now
