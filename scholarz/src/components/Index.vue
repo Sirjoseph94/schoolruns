@@ -9,6 +9,7 @@
 <!--begin main body -->
     <div class="container">
       <div class="row">
+        <Alert v-if="alert" v-bind:message="alert"/>
       <!--card -->           
       <div class="col-md-4 mt-5"  v-for="student in students">               
         <div class="card" style="width: 20rem;">
@@ -39,12 +40,13 @@
 </template>
 
 <script>
-
+import Alert from './Alert';
 export default {
   name: 'students',
   data () {
     return {
-     students: []
+     students: [],
+     alert:'',
     }
   },
   methods:{
@@ -58,7 +60,16 @@ export default {
     }
   },
   created: function(){
+    if(this.$route.query.alert){
+        this.alert = this.$route.query.alert;
+    }
     this.fetchStudents();
+  },
+  updated: function(){
+    this.fetchStudents();
+  },
+  components: {
+    Alert
   }
 }
 </script>

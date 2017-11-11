@@ -44,10 +44,10 @@
 
               <div class="row mx-auto">
                  <label class="col-form-label" for="age"></label>
-                <input type="number" class="form-control col-md-5" id="age" placeholder="Enter Age" v-model="age">
+                <input type="number" class="form-control col-md-5" id="age" placeholder="Enter Age" v-model="students.age">
               
                  <label class="col-form-label" for="grade">Grade</label>
-                <input type="number" class="form-control col-md-5" id="grade" placeholder="Enter Grade" v-model="grade">
+                <input type="number" step="0.1" class="form-control col-md-5" id="grade" placeholder="Enter Grade" v-model="students.grade">
               
               </div>
            <div class="text-center">
@@ -78,7 +78,7 @@ export default {
   },
   methods:{
     addStudent(e){
-    if(!this.students.name || this.students.department || this.students.matriculation_number || this.students.level || this.students.age || this.students.grade){
+    if(!this.students.name || !this.students.department || !this.students.matriculation_number || !this.students.level || !this.students.grade || !this.students.age ){
       console.log('Please fill the required fields')
     } else {
       let newStudent = {
@@ -91,21 +91,15 @@ export default {
 
       }
 
-      .this.$http.post('http://localhost:1000/students', newStudent)
+      this.$http.post('http://localhost:1000/students', newStudent)
         .then(function(response){
-          this.$router.push({path: '/' })
-        })
+          this.$router.push({path: '/' , query: {alert: 'Student added!'} })
+        });
        e.preventDefault();
     }
       e.preventDefault();
     }
-  },
-  created: function(){
-    this.fetchStudents();
   }
- // updated: function(){
-   // this.fetchStudents();
- // }
 }
 </script>
 
