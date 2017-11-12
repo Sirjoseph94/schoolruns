@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import vueResource from 'vue-resource'
 import Scholars from '@/components/Index'
 import Profile from '@/components/Profile'
-import Login from '@/components/login'
+import Update from '@/components/Update'
 import Add from '@/components/Add'
 
 Vue.use(vueResource)
@@ -29,9 +29,9 @@ export default new Router({
       component: Add
     },
     {
-      path: '/login',
+      path: '/update/:id',
      // name: 'login',
-      component: Login
+      component: Update
     }
   ]
 })

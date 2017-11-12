@@ -21,12 +21,11 @@
           <li class="list-group-item">{{student.age}} years old</li>
           <li class="list-group-item">{{student.department}} department</li>
           <li class="list-group-item">{{student.level}}</li>
-        
         </ul>
-          <router-link class="btn btn-primary" v-bind:to="'/profile/'+students._id">Update</router-link>
+          <router-link class="btn btn-primary" v-bind:to="'/profile/'+student._id">View</router-link>
           <a href="#" class="btn btn-danger">Delete</a>
         </div>
-              <div class="h-100"></div>
+       
       </div>
       <!--/card -->
 
@@ -65,9 +64,9 @@ export default {
     }
     this.fetchStudents();
   },
-  updated: function(){
-    this.fetchStudents();
-  },
+  //updated: function(){
+    //this.fetchStudents();
+ // },
   components: {
     Alert
   }
