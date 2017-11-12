@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import vueResource from 'vue-resource'
-import Scholars from '@/components/index'
-import Profile from '@/components/profile'
+import Scholars from '@/components/Index'
+import Profile from '@/components/Profile'
 import Login from '@/components/login'
 import Add from '@/components/Add'
 
@@ -20,7 +20,7 @@ export default new Router({
       component: Scholars
     },
     {
-      path: '/profile',
+      path: '/profile/:id',
     //  name: 'profile',
       component: Profile
     },
